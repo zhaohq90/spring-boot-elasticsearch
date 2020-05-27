@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
+    container_name: elasticsearch
+    environment:
+      - "cluster.name=elasticsearch" #集群名称为 elasticsearch
+      - "discovery.type=single-node" #单节点启动
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m" #jvm内存分配为 512MB
+    volumes:
+      - esplugins:/usr/share/elasticsearch/plugins:rw #使用相对路径避免出现无权限错误
+      - esdata:/usr/share/elasticsearch/data:rw
+    ports:
+      - 9200:9200
+      - 9300:9300
+      
+volumes:
+  esplugins:
+    driver: local
+  esdata:
+    driver: local

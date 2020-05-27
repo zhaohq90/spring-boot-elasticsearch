@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: spring-boot-simple
+  elasticsearch:
+      rest:
+          password: changeme
+          uris: 47.97.158.62:9200
+          username: elastic
